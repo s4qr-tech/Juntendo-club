@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>活動のあゆみ｜和アートセラピー</title>
+<meta name="description" content="和アートセラピーの1年間の活動履歴。月ごと・季節ごとの取り組みを紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo"><i></i>和アートセラピー</a>
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="#seasons">季節ごとに見る</a></li>
+      <li><a href="apply.html" class="btn small">応募する</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hist-hero">
+    <div class="container">
+      <span class="en">History 2026</span>
+      <h1>活動の<span style="color:var(--persimmon)">あゆみ</span></h1>
+      <p>1年間、月ごとにどんな活動をしているかをまとめました。帯にカーソルを合わせる（スマホはタップ）と詳しく見られます。</p>
+    </div>
+  </section>
+
+  <!-- 月ごとの縦帯 -->
+  <div class="strips" id="strips" aria-label="月ごとの活動"></div>
+
+  <div class="hist-word">
+    <div class="container">
+      <div class="big">Monthly</div>
+      <div class="line">月ごとの活動紹介</div>
+    </div>
+  </div>
+
+  <!-- 季節ごと -->
+  <section id="seasons">
+    <div class="container">
+      <span class="en">Seasons</span>
+      <h2>季節ごとに<span class="mark">見る</span></h2>
+      <div class="season-list" id="seasonList"></div>
+      <p class="note">※ 活動内容・施設名はすべて仮置きです。実際の予定・実績に差し替えてください。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo"><i></i>和アートセラピー</div>
+    <p>順天堂大学 研究／サークル活動（団体情報は仮）</p>
+    <p>© 2026 Wa Art Therapy</p>
+  </div>
+</footer>
+
+<script>
+// ▼ ここを書き換えると、帯と季節一覧の両方が更新されます
+const MONTHS = [
+  { m: 4,  season: 'spring', title: '説明会',          tag: '新歓',   text: '新メンバー向けの説明会。和紙ちぎりの体験コーナーも。' },
+  { m: 5,  season: 'spring', title: 'A施設訪問',       tag: '訪問',   text: '今年度はじめての訪問。和紙で「こいのぼり」を貼りあわせました。' },
+  { m: 6,  season: 'summer', title: 'ロープレ・反省会', tag: '交流',   text: '声かけのロールプレイと反省会。メンバー交流会もあわせて実施。' },
+  { m: 7,  season: 'summer', title: '七夕飾りづくり',   tag: '訪問',   text: 'B施設で、ちぎった和紙の短冊と天の川をみんなで制作。' },
+  { m: 8,  season: 'summer', title: '夏合宿',          tag: '研究',   text: '研究計画の見直しと、秋の題材の試作。' },
+  { m: 9,  season: 'autumn', title: '敬老の日作品展',   tag: '展示',   text: '施設のみなさんの作品を、施設のロビーで展示しました。' },
+  { m: 10, season: 'autumn', title: '学園祭展示',       tag: '展示',   text: '活動紹介パネルと、来場者向けのちぎり絵体験。' },
+  { m: 11, season: 'autumn', title: '紅葉のちぎり絵',   tag: '訪問',   text: 'C施設訪問。赤や黄の和紙を破いて紅葉の山をつくりました。' },
+  { m: 12, season: 'winter', title: '年末振り返り会',   tag: '交流',   text: '1年の記録を見返し、OTの先生からフィードバック。' },
+  { m: 1,  season: 'winter', title: 'お正月飾り',       tag: '訪問',   text: '和紙を切り貼りして、干支と鏡もちの飾りを制作。' },
+  { m: 2,  season: 'winter', title: '研究まとめ',       tag: '研究',   text: '活動記録とアンケートを分析し、報告書にまとめます。' },
+  { m: 3,  season: 'spring', title: '成果発表・追いコン', tag: '発表', text: '学内で成果を発表。卒業する先輩を送り出します。' },
+];
+const SEASONS = {
+  spring: { ja: '春', en: 'Spring' },
+  summer: { ja: '夏', en: 'Summer' },
+  autumn: { ja: '秋', en: 'Autumn' },
+  winter: { ja: '冬', en: 'Winter' },
+};
+const EN = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const strips = document.getElementById('strips');
+strips.innerHTML = MONTHS.map(d => `
+  <article class="strip ${d.season}" tabindex="0">
+    <span class="tear t2"></span><span class="tear t1"></span><span class="dot"></span>
+    <div class="ttl"><span class="mon">${d.m}月</span>　${d.title}</div>
+    <div class="sub">${EN[d.m]} ／ ${SEASONS[d.season].en}</div>
+    <div class="detail">
+      <span class="tag">${d.tag}</span>
+      <h3>${d.m}月：${d.title}</h3>
+      <p>${d.text}</p>
+    </div>
+  </article>`).join('');
+
+strips.querySelectorAll('.strip').forEach(s => {
+  const toggle = () => {
+    const open = !s.classList.contains('open');
+    strips.querySelectorAll('.strip').forEach(x => x.classList.remove('open'));
+    s.classList.toggle('open', open);
+    strips.classList.toggle('has-open', open);
+  };
+  s.addEventListener('click', toggle);
+  s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+});
+
+document.getElementById('seasonList').innerHTML = Object.entries(SEASONS).map(([key, s]) => `
+  <div class="season ${key}">
+    <h3>${s.ja}<small>${s.en}</small></h3>
+    <ul>${MONTHS.filter(d => d.season === key).map(d => `<li><b>${d.m}月</b>${d.title}</li>`).join('')}</ul>
+  </div>`).join('');
+</script>
+</body>
+</html>

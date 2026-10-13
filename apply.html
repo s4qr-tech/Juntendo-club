@@ -35,32 +35,48 @@
     <div class="form-wrap">
 
       <!-- Facility -->
-      <form class="panel active" id="facility">
-        <div class="field"><label>施設名<small>必須</small></label><input type="text" name="facility_name" required></div>
-        <div class="row2">
-          <div class="field"><label>ご担当者名<small>必須</small></label><input type="text" name="contact_name" required></div>
-          <div class="field"><label>役職</label><input type="text" name="role"></div>
+      <form class="panel active formal" id="facility">
+        <div class="field formal-intro">
+          <h2 class="formal-title">施設受け入れのお申し込み</h2>
+          <p>このたびは「和アートセラピー」の活動にご関心をお寄せいただき、誠にありがとうございます。活動の受け入れをご検討の施設さまは、下記のフォームに必要事項をご記入のうえ、送信してください。内容を確認のうえ、担当者より5営業日以内にご連絡いたします。</p>
+          <p class="req-note"><span class="req">必須</span> は必須項目です。</p>
         </div>
-        <div class="row2">
-          <div class="field"><label>メールアドレス<small>必須</small></label><input type="email" name="email" required></div>
-          <div class="field"><label>電話番号</label><input type="tel" name="tel"></div>
-        </div>
-        <div class="field"><label>施設の所在地（市区町村）</label><input type="text" name="area"></div>
-        <div class="row2">
-          <div class="field"><label>施設の種類</label>
+
+        <fieldset class="field">
+          <legend><span>1</span>施設情報</legend>
+          <div class="frow"><label>施設名<span class="req">必須</span></label><input type="text" name="facility_name" required></div>
+          <div class="frow"><label>施設の種別</label>
             <select name="type"><option>特別養護老人ホーム</option><option>介護老人保健施設</option><option>デイサービス</option><option>有料老人ホーム</option><option>その他</option></select>
           </div>
-          <div class="field"><label>参加予定人数（目安）</label><input type="text" name="people" placeholder="例：10名"></div>
-        </div>
-        <div class="field"><label>ご希望の時期</label>
-          <div class="checks">
-            <label><input type="checkbox"> 平日午前</label><label><input type="checkbox"> 平日午後</label><label><input type="checkbox"> 土日</label>
+          <div class="frow"><label>所在地（市区町村）</label><input type="text" name="area" placeholder="例：東京都文京区"></div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend><span>2</span>ご担当者さま情報</legend>
+          <div class="frow"><label>ご担当者名<span class="req">必須</span></label><input type="text" name="contact_name" required></div>
+          <div class="frow"><label>役職</label><input type="text" name="role"></div>
+          <div class="frow"><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" required></div>
+          <div class="frow"><label>電話番号</label><input type="tel" name="tel" placeholder="例：03-0000-0000"></div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend><span>3</span>ご希望内容</legend>
+          <div class="frow"><label>参加予定人数（目安）</label><input type="text" name="people" placeholder="例：10名"></div>
+          <div class="frow"><label>ご希望の時間帯</label>
+            <div class="checks">
+              <label><input type="checkbox"> 平日午前</label><label><input type="checkbox"> 平日午後</label><label><input type="checkbox"> 土日</label>
+            </div>
           </div>
+          <div class="frow"><label>ご質問・ご要望</label><textarea name="message" placeholder="ご不明な点や、配慮が必要な事項などがございましたらご記入ください。"></textarea></div>
+        </fieldset>
+
+        <div class="field privacy">
+          <h3>個人情報の取り扱いについて</h3>
+          <p>ご記入いただいた個人情報は、本活動に関するご連絡および日程調整の目的にのみ利用し、ご本人の同意なく第三者に提供することはございません。（文面は仮置きです。大学の規程に沿った内容に差し替えてください。）</p>
+          <div class="checks"><label><input type="checkbox" required> 上記の個人情報の取り扱いに同意します<span class="req">必須</span></label></div>
         </div>
-        <div class="field"><label>ご質問・ご要望</label><textarea name="message"></textarea></div>
-        <div class="field"><div class="checks"><label><input type="checkbox" required> 個人情報の取り扱いに同意します</label></div></div>
-        <button class="btn" type="submit">施設として応募する</button>
-        <div class="thanks"><h3>ありがとうございます。</h3><p>内容を確認のうえ、担当よりご連絡します。</p></div>
+        <div class="field submit-row"><button class="btn formal-btn" type="submit">この内容で送信する</button></div>
+        <div class="thanks"><h3>お申し込みを受け付けました</h3><p>このたびはお申し込みいただき、誠にありがとうございます。<br>内容を確認のうえ、担当者より改めてご連絡いたします。</p></div>
       </form>
 
       <!-- Student -->
@@ -109,6 +125,7 @@ function show(id) {
   if (!document.getElementById(id)) id = 'facility';
   tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
   panels.forEach(p => p.classList.toggle('active', p.id === id));
+  document.body.classList.toggle('is-formal', id === 'facility');
 }
 tabs.forEach(t => t.addEventListener('click', () => { show(t.dataset.target); history.replaceState(null, '', '#' + t.dataset.target); }));
 show(location.hash.replace('#', ''));

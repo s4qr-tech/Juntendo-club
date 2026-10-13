@@ -192,6 +192,38 @@ textarea { min-height: 130px; resize: vertical; }
 .thanks { display: none; text-align: center; padding: 50px 10px; }
 .thanks h3 { font-family: var(--font-head); font-size: 28px; margin-bottom: 12px; }
 
+/* ===== 施設フォーム：フォーマル寄り ===== */
+body.is-formal .form-wrap { border-radius: 6px; border: 1px solid #d8d3c7; border-top: 4px solid var(--indigo); padding: 48px 56px; }
+body.is-formal .tab { border-radius: 4px; }
+body.is-formal .tab.active { background: var(--indigo); border-color: var(--indigo); }
+.formal .formal-intro { border-bottom: 1px solid #e2dccd; padding-bottom: 26px; margin-bottom: 34px; }
+.formal .formal-title { font-family: var(--font-body); font-weight: 700; font-size: 24px; margin-bottom: 14px; color: var(--ink); }
+.formal .formal-intro p { font-size: 16px; }
+.formal .req-note { margin-top: 10px; font-size: 14px !important; color: var(--muted); }
+.formal .req { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: #B5432A; border-radius: 3px; padding: 0 7px; margin-left: 10px; line-height: 1.8; vertical-align: middle; }
+.formal fieldset { border: none; margin-bottom: 38px; }
+.formal legend { display: flex; align-items: center; gap: 12px; width: 100%; font-weight: 700; font-size: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--indigo); margin-bottom: 8px; }
+.formal legend span { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; background: var(--indigo); color: #fff; font-family: var(--font-en); font-size: 14px; border-radius: 3px; }
+.formal .frow { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; padding: 16px 0; border-bottom: 1px solid #eee8dc; }
+.formal .frow > label { font-weight: 700; font-size: 15px; margin: 0; }
+.formal input[type=text], .formal input[type=email], .formal input[type=tel], .formal select, .formal textarea {
+  border-radius: 4px; border: 1px solid #c9c2b2; background: #fff;
+}
+.formal input:focus, .formal select:focus, .formal textarea:focus { border-color: var(--indigo); box-shadow: 0 0 0 3px rgba(58,91,160,.15); }
+.formal .checks input { accent-color: var(--indigo); }
+.formal .privacy { background: #F4F1EA; border: 1px solid #e2dccd; border-radius: 4px; padding: 22px 26px; }
+.formal .privacy h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.formal .privacy p { font-size: 14px; line-height: 1.8; margin-bottom: 14px; color: #4a4a52; }
+.formal .submit-row { text-align: center; margin-top: 10px; }
+.formal .formal-btn { background: var(--indigo); border-radius: 4px; box-shadow: none; font-family: var(--font-body); padding: 16px 64px; letter-spacing: .08em; }
+.formal .formal-btn:hover { transform: none; box-shadow: none; background: #2E4A86; }
+.formal .thanks h3 { font-family: var(--font-body); font-size: 22px; }
+@media (max-width: 860px) {
+  body.is-formal .form-wrap { padding: 28px 20px; }
+  .formal .frow { grid-template-columns: 1fr; gap: 8px; }
+  .formal .formal-btn { width: 100%; padding: 16px; }
+}
+
 /* ===== History page ===== */
 .hist-hero { padding: 130px 0 30px; }
 .hist-hero h1 { font-family: var(--font-head); font-weight: 900; font-size: clamp(34px, 6vw, 60px); line-height: 1.3; }

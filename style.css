@@ -277,19 +277,19 @@ body.is-formal .tab.active { background: var(--indigo); border-color: var(--indi
   white-space: nowrap; color: var(--ink); opacity: .7;
 }
 .strip .detail {
-  position: absolute; left: 28px; right: 28px; bottom: 30px;
-  background: rgba(255,255,255,.92); border-radius: 20px; padding: 22px 24px;
+  position: absolute; left: 14px; right: 14px; bottom: 24px;
+  background: rgba(255,255,255,.92); border-radius: 16px; padding: 16px 16px;
   opacity: 0; transform: translateY(16px); transition: opacity .35s .15s, transform .35s .15s;
-  pointer-events: none; min-width: 260px;
+  pointer-events: none;
 }
-.strip .detail h3 { font-family: var(--font-head); font-size: 22px; font-weight: 900; line-height: 1.4; }
+.strip .detail h3 { font-family: var(--font-head); font-size: 18px; font-weight: 900; line-height: 1.4; }
 .strip .detail .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 12px; border-radius: 999px; background: var(--deep); color: #fff; margin-bottom: 8px; }
 .strip .detail p { font-size: 15px; line-height: 1.8; margin-top: 6px; }
 
-.strips:hover .strip, .strips.has-open .strip { flex-grow: .7; }
-.strip:hover, .strip:focus-visible, .strip.open { flex-grow: 4.2 !important; }
+.strips:hover .strip, .strips.has-open .strip { flex-grow: .9; }
+.strip:hover, .strip:focus-visible, .strip.open { flex-grow: 2.2 !important; }
 .strip:hover .detail, .strip:focus-visible .detail, .strip.open .detail { opacity: 1; transform: none; }
-.strip:hover .ttl, .strip.open .ttl { left: 40px; transform: none; }
+.strip:hover .ttl, .strip.open .ttl { left: 24px; transform: none; }
 .strip .ttl { transition: left .4s; }
 
 /* 下の大きな英字 */
@@ -336,13 +336,24 @@ body.is-formal .tab.active { background: var(--indigo); border-color: var(--indi
   .form-wrap { padding: 28px 20px; }
 
   /* 履歴：スマホは横帯を縦に積む */
-  .strips { flex-direction: column; height: auto; }
-  .strip { min-height: 86px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.5); }
-  .strip .ttl, .strip:hover .ttl, .strip.open .ttl { writing-mode: horizontal-tb; top: 26px; left: 20px; transform: none; font-size: 22px; }
-  .strip .sub { writing-mode: horizontal-tb; bottom: auto; top: 32px; left: auto; right: 20px; }
-  .strip .tear.t1 { height: 30px; }
+  .strips { flex-direction: column; height: auto; margin: 24px 16px 0; background: transparent; gap: 8px; }
+  .strip, .strips:hover .strip, .strips.has-open .strip, .strip:hover, .strip.open { flex: none !important; }
+  .strip { border: none; border-radius: 14px; padding: 18px 48px 22px 18px; }
+  .strip::after {
+    content: "＋"; position: absolute; right: 18px; top: 18px;
+    font-weight: 700; font-size: 18px; line-height: 1.6; color: var(--ink); opacity: .6; z-index: 1;
+  }
+  .strip.open::after { content: "－"; }
+  .strip .ttl, .strip:hover .ttl, .strip.open .ttl {
+    position: relative; z-index: 1; writing-mode: horizontal-tb; top: auto; left: auto; transform: none;
+    font-size: 19px; letter-spacing: .04em; white-space: normal; line-height: 1.5;
+  }
+  .strip .ttl .mon { display: inline-block; min-width: 2.8em; }
+  .strip .sub { position: relative; z-index: 1; writing-mode: horizontal-tb; bottom: auto; left: auto; display: block; margin-top: 2px; font-size: 11px; }
+  .strip .tear.t1 { height: 14px; }
   .strip .tear.t2, .strip .dot { display: none; }
-  .strip .detail { position: static; opacity: 1; transform: none; margin: 76px 16px 20px; display: none; min-width: 0; }
+  .strip .detail { position: relative; left: auto; right: auto; bottom: auto; z-index: 1; opacity: 1; transform: none; margin: 14px 0 0; display: none; padding: 14px 16px; }
+  .strip .detail h3 { display: none; }
   .strip.open .detail { display: block; }
   .season-list { grid-template-columns: 1fr 1fr; }
 }

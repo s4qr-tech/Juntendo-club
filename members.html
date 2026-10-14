@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>仲間｜和アートセラピー</title>
+<meta name="description" content="和アートセラピーでいっしょに活動するメンバーと協力団体。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo"><i></i>和アートセラピー</a>
+    <div class="nav-right">
+      <a href="apply.html" class="btn small">応募する</a>
+      <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu">
+    <ul class="container">
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="activity.html">活動について</a></li>
+      <li><a href="research.html">研究・実績</a></li>
+      <li><a href="history.html">活動のあゆみ</a></li>
+      <li><a href="members.html" aria-current="page">仲間</a></li>
+      <li><a href="support.html">応援する・賛助会員</a></li>
+      <li><a href="apply.html">応募フォーム</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="en">Members</span>
+      <h1>いっしょに活動する仲間</h1>
+      <p>学生・作業療法士・協力施設が、立場をこえて関わっています。</p>
+    </div>
+  </section>
+<!-- 5. Members -->
+<section class="members" id="members">
+  <div class="container">
+        <p class="fade">順天堂大学を中心に、他大学の学生と作業療法士が、立場をこえて関わっています。</p>
+    <div class="member-row fade">
+      <span class="chip fill">順天堂大学</span>
+      <span class="chip">他大学の学生（仮）</span>
+      <span class="chip">作業療法士（OT）</span>
+      <span class="chip">協力施設（仮）</span>
+    </div>
+
+    <h3 class="profiles-title fade">メンバー紹介</h3>
+    <div class="profiles" id="profiles"></div>
+    <p class="note">※ 掲載はご本人の許可がある方のみです。現在はサンプルを表示しています。</p>
+  </div>
+</section>
+
+</main>
+
+<nav class="pager container" aria-label="ページ移動"><a class="pn prev" href="history.html"><small>前のページ</small>活動のあゆみ</a><a class="pn next" href="support.html"><small>次のページ</small>応援する・賛助会員</a></nav>
+
+<footer>
+  <div class="container">
+    <div class="logo"><i></i>和アートセラピー</div>
+    <p>順天堂大学 研究／サークル活動（団体情報は仮）</p>
+    <p>© 2026 Wa Art Therapy</p>
+  </div>
+</footer>
+
+<script>
+// ▼ メンバー紹介：1人1行。consent が true の人だけ表示されます
+//   photo：顔写真や好きなアイコン画像のパス（例 'members/hanako.jpg'）。空なら名前の頭文字の丸アイコン
+const MEMBERS = [
+  { consent: true, name: 'はなこ（サンプル）', grade: '医療看護学部 2年', photo: '', met: '新歓の説明会で', comment: '和紙をちぎる音で、利用者さんと一緒に笑えたのが忘れられません。' },
+  { consent: true, name: 'たろう（サンプル）', grade: '保健医療学部 3年', photo: '', met: '先輩に誘われて', comment: 'OTの視点で、手を動かすことの力を実感しています。' },
+  { consent: true, name: 'みどり（サンプル）', grade: '他大学 1年', photo: '', met: 'SNSで見つけて', comment: '大学の外の仲間とつながれるのがうれしいです。' },
+  { consent: false, name: '（許可前の人はここに入れておけば表示されません）', grade: '', photo: '', met: '', comment: '' },
+];
+const AVATAR_COLORS = ['#F6C9D0', '#CDE6A6', '#F8C2A6', '#C9D5EE'];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+document.getElementById('profiles').innerHTML = MEMBERS.filter(m => m.consent).map((m, i) => `
+  <article class="profile fade">
+    <div class="avatar" style="background:${AVATAR_COLORS[i % AVATAR_COLORS.length]}">
+      ${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}のアイコン">` : `<span>${esc(m.name.charAt(0))}</span>`}
+    </div>
+    <h4>${esc(m.name)}</h4>
+    <p class="grade">${esc(m.grade)}</p>
+    <p class="met"><b>出会い</b>${esc(m.met)}</p>
+    <p class="comment">${esc(m.comment)}</p>
+  </article>`).join('');
+
+
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .15 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+<script src="menu.js?v=4"></script>
+<script src="motion.js?v=4"></script>
+</body>
+</html>

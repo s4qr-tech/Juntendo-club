@@ -1,51 +1,5 @@
-// ボタン・スイッチまわりの動き（和紙モチーフ）
+// 和紙モチーフの手ざわりギミック
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const PAPER_COLORS = ['#F6C9D0', '#A8D26B', '#F2784B', '#3A5BA0', '#F8E3B0'];
-
-// ちぎった和紙の形（ランダムなギザギザの多角形）
-function tornPolygon() {
-  const pts = [];
-  const n = 7 + Math.floor(Math.random() * 4);
-  for (let i = 0; i < n; i++) {
-    const a = (i / n) * Math.PI * 2;
-    const r = 30 + Math.random() * 20;
-    pts.push(`${50 + Math.cos(a) * r}% ${50 + Math.sin(a) * r}%`);
-  }
-  return `polygon(${pts.join(',')})`;
-}
-
-// ボタンを押すと、和紙の切れはしが舞う
-function scatterPaper(x, y, count = 9) {
-  if (reduceMotion) return;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('span');
-    p.className = 'paper-bit';
-    const size = 8 + Math.random() * 12;
-    const ang = Math.random() * Math.PI * 2;
-    const dist = 40 + Math.random() * 60;
-    p.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;` +
-      `background:${PAPER_COLORS[i % PAPER_COLORS.length]};clip-path:${tornPolygon()};` +
-      `--dx:${Math.cos(ang) * dist}px;--dy:${Math.sin(ang) * dist - 20}px;--rot:${Math.random() * 540 - 270}deg;`;
-    document.body.appendChild(p);
-    p.addEventListener('animationend', () => p.remove());
-  }
-}
-
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.btn, .tab, .chip');
-  if (btn) scatterPaper(e.clientX, e.clientY, btn.classList.contains('btn') ? 10 : 6);
-});
-
-// チェック・ラジオは「はんこ」を押したように
-document.addEventListener('change', e => {
-  const el = e.target;
-  if (!el.matches('input[type=checkbox], input[type=radio]') || !el.checked || reduceMotion) return;
-  const label = el.closest('label');
-  if (!label) return;
-  label.classList.remove('stamped');
-  void label.offsetWidth;
-  label.classList.add('stamped');
-});
 
 // ===== 最初の画面：指でなぞって和紙をやぶる =====
 (function washiIntro() {
@@ -70,11 +24,8 @@ document.addEventListener('change', e => {
 
   function tear(path) {
     const W = innerWidth, H = innerHeight;
-    // 左端から右端までの破れ目を作る（ゆらぎを足して和紙らしく）
     path = path.slice().sort((a, b) => a[0] - b[0]);
-    const line = [[0, path[0][1]]];
-    path.forEach(([x, y]) => line.push([x, y]));
-    line.push([W, path[path.length - 1][1]]);
+    const line = [[0, path[0][1]], ...path, [W, path[path.length - 1][1]]];
     const rough = [];
     for (let i = 0; i < line.length - 1; i++) {
       const [x1, y1] = line[i], [x2, y2] = line[i + 1];
@@ -111,15 +62,13 @@ document.addEventListener('change', e => {
     if (!dragging) return;
     points.push([e.clientX, e.clientY]);
     crease.setAttribute('points', points.map(p => p.join(',')).join(' '));
-    if (Math.random() < .35) scatterPaper(e.clientX, e.clientY, 1);
   });
   const end = () => {
     if (!dragging) return;
     dragging = false;
     intro.classList.remove('pulling');
     const xs = points.map(p => p[0]);
-    const span = Math.max(...xs) - Math.min(...xs);
-    if (span > innerWidth * .4) tear(points);
+    if (Math.max(...xs) - Math.min(...xs) > innerWidth * .4) tear(points);
     else {
       crease.setAttribute('points', '');
       intro.classList.remove('nudge'); void intro.offsetWidth; intro.classList.add('nudge');
@@ -129,4 +78,92 @@ document.addEventListener('change', e => {
   intro.addEventListener('pointercancel', end);
   intro.querySelector('.w-skip').addEventListener('click', straightTear);
   intro.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') straightTear(); });
+})();
+
+// ===== 袋とじ：ミシン目を指でなぞって開ける =====
+// 使い方：<div class="fukuro" data-label="ひらいて読む"> 中身 </div>
+document.querySelectorAll('.fukuro').forEach(box => {
+  const seal = document.createElement('div');
+  seal.className = 'fk-seal';
+  seal.innerHTML = `
+    <div class="fk-flap"><div class="fk-face">
+      <span class="fk-label">${box.dataset.label || '袋とじ'}</span>
+      <span class="fk-hint">点線を指でなぞって ひらく →</span>
+    </div></div>
+    <div class="fk-perf"><span class="fk-cut"></span></div>
+    <button type="button" class="fk-open">ひらく</button>`;
+  box.appendChild(seal);
+  const cut = seal.querySelector('.fk-cut');
+  const perf = seal.querySelector('.fk-perf');
+  let startX = null, maxX = 0;
+
+  const open = () => {
+    box.classList.add('opened');
+    setTimeout(() => seal.remove(), 900);
+  };
+  const progress = x => {
+    const r = perf.getBoundingClientRect();
+    maxX = Math.max(maxX, Math.min(1, (x - r.left) / r.width));
+    cut.style.width = (maxX * 100) + '%';
+    if (maxX > .92) open();
+  };
+
+  seal.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    const r = perf.getBoundingClientRect();
+    // ミシン目の近く（上下 40px）から始めたときだけ反応
+    if (Math.abs(e.clientY - (r.top + r.height / 2)) > 40) return;
+    startX = e.clientX;
+    seal.setPointerCapture(e.pointerId);
+    progress(e.clientX);
+  });
+  seal.addEventListener('pointermove', e => { if (startX !== null) progress(e.clientX); });
+  const stop = () => {
+    if (startX === null) return;
+    startX = null;
+    if (!box.classList.contains('opened')) {
+      maxX = 0; cut.style.width = '0';
+    }
+  };
+  seal.addEventListener('pointerup', stop);
+  seal.addEventListener('pointercancel', stop);
+  seal.querySelector('.fk-open').addEventListener('click', open);
+  if (reduceMotion) seal.querySelector('.fk-open').textContent = 'ひらく';
+});
+
+// ===== スクロールバー：和紙のロール =====
+(function washiRoll() {
+  const bar = document.createElement('div');
+  bar.className = 'roll-bar';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = '<div class="roll-sheet"></div><div class="roll-core"><span></span></div>';
+  document.body.appendChild(bar);
+  document.documentElement.classList.add('has-roll');
+  const sheet = bar.querySelector('.roll-sheet');
+  const core = bar.querySelector('.roll-core');
+
+  const update = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    const track = bar.clientHeight;
+    const y = p * (track - 34);
+    sheet.style.height = (y + 17) + 'px';                 // ほどけた和紙
+    core.style.transform = `translateY(${y}px)`;          // ロールが下へ転がる
+    core.style.setProperty('--d', (30 - p * 14) + 'px');  // 紙がほどけるほど細くなる
+    core.style.setProperty('--spin', (scrollY * .6) + 'deg');
+  };
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+
+  // ロールをつかんで引っぱるとスクロール
+  let dragging = false;
+  const toScroll = clientY => {
+    const r = bar.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (clientY - r.top - 17) / (r.height - 34)));
+    scrollTo({ top: p * (document.documentElement.scrollHeight - innerHeight), behavior: 'instant' });
+  };
+  bar.addEventListener('pointerdown', e => { dragging = true; bar.setPointerCapture(e.pointerId); bar.classList.add('grab'); toScroll(e.clientY); });
+  bar.addEventListener('pointermove', e => { if (dragging) toScroll(e.clientY); });
+  bar.addEventListener('pointerup', () => { dragging = false; bar.classList.remove('grab'); });
 })();

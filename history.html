@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -23,9 +23,11 @@
   <nav class="menu" id="menu">
     <ul class="container">
       <li><a href="index.html">トップ</a></li>
-      <li><a href="#strips">月ごとに見る</a></li>
-      <li><a href="#seasons">季節ごとに見る</a></li>
-      <li><a href="index.html#support">応援する・賛助会員</a></li>
+      <li><a href="activity.html">活動について</a></li>
+      <li><a href="research.html">研究・実績</a></li>
+      <li><a href="history.html" aria-current="page">活動のあゆみ</a></li>
+      <li><a href="members.html">仲間</a></li>
+      <li><a href="support.html">応援する・賛助会員</a></li>
       <li><a href="apply.html">応募フォーム</a></li>
     </ul>
   </nav>
@@ -60,6 +62,8 @@
     </div>
   </section>
 </main>
+
+<nav class="pager container" aria-label="ページ移動"><a class="pn prev" href="research.html"><small>前のページ</small>研究・実績</a><a class="pn next" href="members.html"><small>次のページ</small>仲間</a></nav>
 
 <footer>
   <div class="container">
@@ -123,7 +127,7 @@ document.getElementById('seasonList').innerHTML = Object.entries(SEASONS).map(([
     <ul>${MONTHS.filter(d => d.season === key).map(d => `<li><b>${d.m}月</b>${d.title}</li>`).join('')}</ul>
   </div>`).join('');
 </script>
-<script src="menu.js"></script>
-<script src="motion.js"></script>
+<script src="menu.js?v=4"></script>
+<script src="motion.js?v=4"></script>
 </body>
 </html>

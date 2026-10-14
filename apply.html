@@ -7,15 +7,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
 <header>
   <div class="container nav">
     <a href="index.html" class="logo"><i></i>和アートセラピー</a>
-    <ul><li><a href="index.html" class="btn ghost small" style="box-shadow:none">← トップへ</a></li></ul>
+    <div class="nav-right">
+      <a href="apply.html" class="btn small">応募する</a>
+      <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
+  <nav class="menu" id="menu">
+    <ul class="container">
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="activity.html">活動について</a></li>
+      <li><a href="research.html">研究・実績</a></li>
+      <li><a href="history.html">活動のあゆみ</a></li>
+      <li><a href="members.html">仲間</a></li>
+      <li><a href="support.html">応援する・賛助会員</a></li>
+      <li><a href="apply.html" aria-current="page">応募フォーム</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
@@ -143,6 +157,8 @@
   </div>
 </main>
 
+<nav class="pager container" aria-label="ページ移動"><a class="pn prev" href="support.html"><small>前のページ</small>応援する・賛助会員</a><span></span></nav>
+
 <footer>
   <div class="container">
     <div class="logo"><i></i>和アートセラピー</div>
@@ -170,6 +186,7 @@ panels.forEach(p => p.addEventListener('submit', e => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }));
 </script>
-<script src="motion.js"></script>
+<script src="menu.js?v=4"></script>
+<script src="motion.js?v=4"></script>
 </body>
 </html>

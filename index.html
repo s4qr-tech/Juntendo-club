@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
 
 <header>
   <div class="container nav">
-    <a href="#top" class="logo"><i></i>和アートセラピー</a>
+    <a href="index.html" class="logo"><i></i>和アートセラピー</a>
     <div class="nav-right">
       <a href="apply.html" class="btn small">応募する</a>
       <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
@@ -30,14 +30,13 @@
   </div>
   <nav class="menu" id="menu">
     <ul class="container">
-      <li><a href="#about">和アートセラピーとは</a></li>
-      <li><a href="#flow">活動の流れ</a></li>
+      <li><a href="index.html" aria-current="page">トップ</a></li>
+      <li><a href="activity.html">活動について</a></li>
+      <li><a href="research.html">研究・実績</a></li>
       <li><a href="history.html">活動のあゆみ</a></li>
-      <li><a href="#voices">参加者の声</a></li>
-      <li><a href="#members">仲間</a></li>
-      <li><a href="#results">実績</a></li>
-      <li><a href="#support">応援する・賛助会員</a></li>
-      <li><a href="#contact">参加募集</a></li>
+      <li><a href="members.html">仲間</a></li>
+      <li><a href="support.html">応援する・賛助会員</a></li>
+      <li><a href="apply.html">応募フォーム</a></li>
     </ul>
   </nav>
 </header>
@@ -83,112 +82,34 @@
   </div>
 </section>
 
-<!-- 3. Flow -->
-<section class="flow" id="flow">
+<!-- 活動の意義・目的 -->
+<section class="purpose" id="purpose">
   <div class="container">
-    <span class="en">Flow</span>
-    <h2 class="fade">活動の<span class="mark">流れ</span></h2>
-    <div class="steps">
-      <div class="step fade"><div class="num">01</div><h3>準備</h3><p>施設の方とOTと相談し、参加者に合う題材と和紙を決めます。</p></div>
-      <div class="step fade"><div class="num">02</div><h3>訪問</h3><p>学生が施設へ。まずはごあいさつと、ゆっくりお話しすることから。</p></div>
-      <div class="step fade"><div class="num">03</div><h3>制作</h3><p>和紙を切り、ちぎり、貼りあわせて、いっしょに一つの作品をつくります。</p></div>
-      <div class="step fade"><div class="num">04</div><h3>振り返り</h3><p>感想を共有し、記録します。次の活動と研究に活かします。</p></div>
+    <span class="en">Purpose</span>
+    <h2 class="fade">活動の<span class="mark">意義と目的</span></h2>
+    <p class="fade">「和紙を手でちぎって、貼る」というシンプルな作業には、いくつもの力があると考えています。</p>
+    <div class="purpose-grid">
+      <div class="purpose-card fade"><span class="num">01</span><h3>手と心のリハビリ</h3><p>ちぎる・切る・貼るといった指先の動きと、色や形を選ぶ集中が、心身のはたらきを自然に引き出します。</p></div>
+      <div class="purpose-card fade"><span class="num">02</span><h3>世代をこえた交流</h3><p>学生と高齢者がいっしょに手を動かすことで会話が生まれ、施設の中に新しいつながりができます。</p></div>
+      <div class="purpose-card fade"><span class="num">03</span><h3>未来の医療者の学び</h3><p>医療・福祉を目指す学生が、OTとともに現場で「その人らしさ」に向き合う経験を積みます。</p></div>
     </div>
+    <p class="note">※ 文章は仮置きです。活動の趣旨に合わせて調整してください。</p>
   </div>
 </section>
 
-<!-- 4. Voices -->
-<section class="voices" id="voices">
+<!-- ページ案内 -->
+<section class="guide">
   <div class="container">
-    <span class="en">Voices</span>
-    <h2 class="fade">参加した人の<span class="mark">声</span></h2>
-    <div class="cards">
-      <div class="card fade">「若い人と話しながら手を動かすのが、こんなに楽しいとは思わなかった。」<div class="who">施設利用者さま（仮）</div></div>
-      <div class="card fade">「普段あまり話さない方が、制作中は笑顔で話してくださいました。」<div class="who">施設スタッフ（仮）</div></div>
-      <div class="card fade">「作品を通して、一人ひとりの人生に触れられた気がします。」<div class="who">参加学生（仮）</div></div>
+    <span class="en">Contents</span>
+    <h2 class="fade">もっと<span class="mark">知る</span></h2>
+    <div class="guide-grid">
+      <a class="guide-card fade" href="activity.html"><span class="en">Activity</span><h3>活動について</h3><p>活動の流れと、参加した人の声</p></a>
+      <a class="guide-card fade" href="research.html"><span class="en">Research</span><h3>研究・実績</h3><p>どんな研究につながるか、これまでの実績と取り組み</p></a>
+      <a class="guide-card fade" href="history.html"><span class="en">History</span><h3>活動のあゆみ</h3><p>月ごと・季節ごとの1年間</p></a>
+      <a class="guide-card fade" href="members.html"><span class="en">Members</span><h3>仲間</h3><p>いっしょに活動するメンバーと協力団体</p></a>
+      <a class="guide-card fade" href="support.html"><span class="en">Support</span><h3>応援する・賛助会員</h3><p>ご寄付や物品のご提供、賛助会員制度</p></a>
+      <a class="guide-card fade" href="apply.html"><span class="en">Apply</span><h3>応募フォーム</h3><p>施設の方・学生の方・ご支援の方</p></a>
     </div>
-    <p class="note">※ 文章はすべて仮のものです。実際の声に差し替えてください。</p>
-  </div>
-</section>
-
-<!-- 5. Members -->
-<section class="members" id="members">
-  <div class="container">
-    <span class="en">Members</span>
-    <h2 class="fade">いっしょに活動する<span class="mark">仲間</span></h2>
-    <p class="fade">順天堂大学を中心に、他大学の学生と作業療法士が、立場をこえて関わっています。</p>
-    <div class="member-row fade">
-      <span class="chip fill">順天堂大学</span>
-      <span class="chip">他大学の学生（仮）</span>
-      <span class="chip">作業療法士（OT）</span>
-      <span class="chip">協力施設（仮）</span>
-    </div>
-
-    <h3 class="profiles-title fade">メンバー紹介</h3>
-    <div class="profiles" id="profiles"></div>
-    <p class="note">※ 掲載はご本人の許可がある方のみです。現在はサンプルを表示しています。</p>
-  </div>
-</section>
-
-<!-- 6. Results -->
-<section class="results" id="results">
-  <div class="container">
-    <span class="en">Results</span>
-    <h2 class="fade">活動の<span class="mark" style="background:linear-gradient(transparent 62%, rgba(246,201,208,.4) 62%)">実績</span></h2>
-    <div class="stats fade">
-      <div class="stat"><b>13</b><span>開催回数（回）</span></div>
-      <div class="stat"><b>6</b><span>協力施設</span></div>
-      <div class="stat"><b>40<small>名前後</small></b><span>参加学生</span></div>
-      <div class="stat"><b>1</b><span>研究発表</span></div>
-    </div>
-    <div class="paper-link fade">
-      <span class="en">Research</span>
-      <p>活動の効果をまとめた研究論文はこちらからご覧いただけます。</p>
-      <a href="https://www.juntendo.ac.jp/academics/faculty/ila/assets/847327a592c3e4d89039487c8f27a237.pdf" class="btn ghost-light" target="_blank" rel="noopener">論文を読む（PDF）↗</a>
-    </div>
-    <p class="note">※ 数値は仮置きです（2026年10月時点）。実績に合わせて更新してください。</p>
-    <a href="history.html" class="btn">1年の活動のあゆみを見る</a>
-  </div>
-</section>
-
-<!-- 6.5 Support -->
-<section class="support" id="support">
-  <div class="container">
-    <span class="en">Support</span>
-    <h2 class="fade">活動を<span class="mark">応援する</span></h2>
-    <p class="fade">和紙や道具の購入、施設への交通費、研究の記録など、活動はみなさまのご支援に支えられています。</p>
-    <div class="support-grid">
-      <div class="support-card fade">
-        <span class="badge">01</span>
-        <h3>ご寄付</h3>
-        <p>一回ごとのご寄付を受け付けています。金額は自由です。</p>
-      </div>
-      <div class="support-card fade">
-        <span class="badge">02</span>
-        <h3>物品のご提供</h3>
-        <p>和紙、のり、はさみ、色紙など、制作に使う材料のご提供も大歓迎です。</p>
-      </div>
-      <div class="support-card fade">
-        <span class="badge">03</span>
-        <h3>広める</h3>
-        <p>ご家族やお知り合いの施設・学生に、活動を紹介していただくことも大きな力になります。</p>
-      </div>
-    </div>
-
-    <div class="member-plan fade">
-      <div class="mp-head">
-        <span class="en">Supporting Members</span>
-        <h3>賛助会員制度</h3>
-        <p>年会費で、継続的に活動を支えていただく制度です。会員さまには活動報告をお届けします。</p>
-      </div>
-      <div class="mp-plans">
-        <div class="plan"><h4>個人会員</h4><b>1口 3,000円<small>／年（仮）</small></b><ul><li>年2回の活動報告</li><li>作品展へのご招待</li></ul></div>
-        <div class="plan"><h4>学生会員</h4><b>1口 1,000円<small>／年（仮）</small></b><ul><li>年2回の活動報告</li><li>体験会への参加</li></ul></div>
-        <div class="plan"><h4>法人・団体会員</h4><b>1口 10,000円<small>／年（仮）</small></b><ul><li>年2回の活動報告</li><li>サイトへのお名前掲載（希望制）</li></ul></div>
-      </div>
-      <a href="apply.html#support" class="btn">支援・賛助会員のお申し込み</a>
-    </div>
-    <p class="note">※ 金額・特典・寄付の受付方法はすべて仮置きです。大学の規程（寄付金の扱い）を確認のうえ確定してください。</p>
   </div>
 </section>
 
@@ -215,7 +136,6 @@
 
 </main>
 
-<!-- 8. Footer -->
 <footer>
   <div class="container">
     <div class="logo"><i></i>和アートセラピー</div>
@@ -225,33 +145,12 @@
 </footer>
 
 <script>
-// ▼ メンバー紹介：1人1行。consent が true の人だけ表示されます
-//   photo：顔写真や好きなアイコン画像のパス（例 'members/hanako.jpg'）。空なら名前の頭文字の丸アイコン
-const MEMBERS = [
-  { consent: true, name: 'はなこ（サンプル）', grade: '医療看護学部 2年', photo: '', met: '新歓の説明会で', comment: '和紙をちぎる音で、利用者さんと一緒に笑えたのが忘れられません。' },
-  { consent: true, name: 'たろう（サンプル）', grade: '保健医療学部 3年', photo: '', met: '先輩に誘われて', comment: 'OTの視点で、手を動かすことの力を実感しています。' },
-  { consent: true, name: 'みどり（サンプル）', grade: '他大学 1年', photo: '', met: 'SNSで見つけて', comment: '大学の外の仲間とつながれるのがうれしいです。' },
-  { consent: false, name: '（許可前の人はここに入れておけば表示されません）', grade: '', photo: '', met: '', comment: '' },
-];
-const AVATAR_COLORS = ['#F6C9D0', '#CDE6A6', '#F8C2A6', '#C9D5EE'];
-const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-document.getElementById('profiles').innerHTML = MEMBERS.filter(m => m.consent).map((m, i) => `
-  <article class="profile fade">
-    <div class="avatar" style="background:${AVATAR_COLORS[i % AVATAR_COLORS.length]}">
-      ${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}のアイコン">` : `<span>${esc(m.name.charAt(0))}</span>`}
-    </div>
-    <h4>${esc(m.name)}</h4>
-    <p class="grade">${esc(m.grade)}</p>
-    <p class="met"><b>出会い</b>${esc(m.met)}</p>
-    <p class="comment">${esc(m.comment)}</p>
-  </article>`).join('');
-
 const io = new IntersectionObserver((es) => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: .15 });
 document.querySelectorAll('.fade').forEach(el => io.observe(el));
 </script>
-<script src="menu.js"></script>
-<script src="motion.js"></script>
+<script src="menu.js?v=4"></script>
+<script src="motion.js?v=4"></script>
 </body>
 </html>

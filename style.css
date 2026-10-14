@@ -626,3 +626,14 @@ html.intro-lock, html.intro-lock body { overflow: hidden; }
 }
 .text-link { font-weight: 700; color: var(--indigo); border-bottom: 2px solid var(--indigo); padding-bottom: 2px; }
 .purpose p b { background: linear-gradient(transparent 62%, var(--sakura) 62%); }
+
+/* オープニングの文字位置（破れ目の中央線にかからないように） */
+.w-title { top: auto; bottom: calc(50% + 28px); }
+.w-title .en { margin-bottom: 6px; }
+.w-hint { top: calc(50% + 36px); font-size: clamp(15px, 1.6vw, 20px); letter-spacing: .06em; padding: 0 20px; }
+.w-hint .for-mouse { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .w-hint .for-touch { display: none; }
+  .w-hint .for-mouse { display: inline; }
+  .w-finger { width: 18px; height: 18px; border-radius: 3px 50% 50% 50%; margin-bottom: 18px; }
+}

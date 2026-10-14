@@ -12,6 +12,14 @@
 </head>
 <body>
 
+<!-- 最初の画面：和紙をやぶって開く -->
+<div class="washi" id="washi" role="dialog" aria-label="オープニング" tabindex="0">
+  <div class="w-top"><div class="w-piece"><div class="w-title"><span class="en">Wa Art Therapy</span><b>和アートセラピー</b></div></div></div>
+  <div class="w-bottom"><div class="w-piece"><p class="w-hint"><span class="w-finger" aria-hidden="true"></span>指でよこになぞって、和紙をやぶる</p></div></div>
+  <svg class="w-crease" aria-hidden="true"><polyline points="" /></svg>
+  <button class="w-skip" type="button">ひらく</button>
+</div>
+
 <header>
   <div class="container nav">
     <a href="#top" class="logo"><i></i>和アートセラピー</a>
@@ -115,6 +123,10 @@
       <span class="chip">作業療法士（OT）</span>
       <span class="chip">協力施設（仮）</span>
     </div>
+
+    <h3 class="profiles-title fade">メンバー紹介</h3>
+    <div class="profiles" id="profiles"></div>
+    <p class="note">※ 掲載はご本人の許可がある方のみです。現在はサンプルを表示しています。</p>
   </div>
 </section>
 
@@ -124,12 +136,18 @@
     <span class="en">Results</span>
     <h2 class="fade">活動の<span class="mark" style="background:linear-gradient(transparent 62%, rgba(246,201,208,.4) 62%)">実績</span></h2>
     <div class="stats fade">
-      <div class="stat"><b>00</b><span>開催回数（仮）</span></div>
-      <div class="stat"><b>00</b><span>協力施設（仮）</span></div>
-      <div class="stat"><b>00</b><span>参加学生（仮）</span></div>
-      <div class="stat"><b>00</b><span>研究発表（仮）</span></div>
+      <div class="stat"><b>13</b><span>開催回数（回）</span></div>
+      <div class="stat"><b>6</b><span>協力施設</span></div>
+      <div class="stat"><b>40<small>名前後</small></b><span>参加学生</span></div>
+      <div class="stat"><b>1</b><span>研究発表</span></div>
     </div>
-    <p class="note">※ 数値は仮置きです。実績に合わせて更新してください。</p>
+    <div class="paper-link fade">
+      <span class="en">Research</span>
+      <p>活動の効果をまとめた研究論文はこちらからご覧いただけます。</p>
+      <!-- ▼ 論文のURLが決まったら href を差し替えてください -->
+      <a href="#" class="btn ghost-light" target="_blank" rel="noopener">論文を読む（準備中）↗</a>
+    </div>
+    <p class="note">※ 数値は仮置きです（2026年10月時点）。実績に合わせて更新してください。</p>
     <a href="history.html" class="btn">1年の活動のあゆみを見る</a>
   </div>
 </section>
@@ -208,11 +226,33 @@
 </footer>
 
 <script>
+// ▼ メンバー紹介：1人1行。consent が true の人だけ表示されます
+//   photo：顔写真や好きなアイコン画像のパス（例 'members/hanako.jpg'）。空なら名前の頭文字の丸アイコン
+const MEMBERS = [
+  { consent: true, name: 'はなこ（サンプル）', grade: '医療看護学部 2年', photo: '', met: '新歓の説明会で', comment: '和紙をちぎる音で、利用者さんと一緒に笑えたのが忘れられません。' },
+  { consent: true, name: 'たろう（サンプル）', grade: '保健医療学部 3年', photo: '', met: '先輩に誘われて', comment: 'OTの視点で、手を動かすことの力を実感しています。' },
+  { consent: true, name: 'みどり（サンプル）', grade: '他大学 1年', photo: '', met: 'SNSで見つけて', comment: '大学の外の仲間とつながれるのがうれしいです。' },
+  { consent: false, name: '（許可前の人はここに入れておけば表示されません）', grade: '', photo: '', met: '', comment: '' },
+];
+const AVATAR_COLORS = ['#F6C9D0', '#CDE6A6', '#F8C2A6', '#C9D5EE'];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+document.getElementById('profiles').innerHTML = MEMBERS.filter(m => m.consent).map((m, i) => `
+  <article class="profile fade">
+    <div class="avatar" style="background:${AVATAR_COLORS[i % AVATAR_COLORS.length]}">
+      ${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}のアイコン">` : `<span>${esc(m.name.charAt(0))}</span>`}
+    </div>
+    <h4>${esc(m.name)}</h4>
+    <p class="grade">${esc(m.grade)}</p>
+    <p class="met"><b>出会い</b>${esc(m.met)}</p>
+    <p class="comment">${esc(m.comment)}</p>
+  </article>`).join('');
+
 const io = new IntersectionObserver((es) => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: .15 });
 document.querySelectorAll('.fade').forEach(el => io.observe(el));
 </script>
 <script src="menu.js"></script>
+<script src="motion.js"></script>
 </body>
 </html>

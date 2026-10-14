@@ -23,10 +23,11 @@
     <div class="container">
       <span class="en">Apply</span>
       <h1>応募フォーム</h1>
-      <p style="margin-top:14px">施設の方・学生の方、それぞれのフォームからお申し込みください。</p>
+      <p style="margin-top:14px">施設の方・学生の方・ご支援いただける方、それぞれのフォームからお申し込みください。</p>
       <div class="tabs" role="tablist">
         <button class="tab active" data-target="facility" role="tab">施設の方</button>
         <button class="tab" data-target="student" role="tab">学生の方</button>
+        <button class="tab" data-target="support" role="tab">支援・賛助会員</button>
       </div>
     </div>
   </section>
@@ -104,6 +105,33 @@
         <div class="field"><div class="checks"><label><input type="checkbox" required> 個人情報の取り扱いに同意します</label></div></div>
         <button class="btn indigo" type="submit">学生として応募する</button>
         <div class="thanks"><h3>ありがとうございます。</h3><p>内容を確認のうえ、担当よりご連絡します。</p></div>
+      </form>
+
+      <!-- Support -->
+      <form class="panel" id="support">
+        <div class="field"><label>ご支援の種類<small>必須</small></label>
+          <select name="support_type" required>
+            <option value="">選択してください</option>
+            <option>賛助会員（個人）</option><option>賛助会員（学生）</option><option>賛助会員（法人・団体）</option>
+            <option>ご寄付（一回）</option><option>物品のご提供</option><option>その他・相談したい</option>
+          </select>
+        </div>
+        <div class="row2">
+          <div class="field"><label>お名前・団体名<small>必須</small></label><input type="text" name="name" required></div>
+          <div class="field"><label>口数（賛助会員の方）</label><input type="text" name="units" placeholder="例：1口"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>メールアドレス<small>必須</small></label><input type="email" name="email" required></div>
+          <div class="field"><label>電話番号</label><input type="tel" name="tel"></div>
+        </div>
+        <div class="field"><label>活動報告の送付先（ご住所）</label><input type="text" name="address"></div>
+        <div class="field"><label>サイトへのお名前掲載</label>
+          <div class="checks"><label><input type="radio" name="listing" value="yes"> 希望する</label><label><input type="radio" name="listing" value="no" checked> 希望しない</label></div>
+        </div>
+        <div class="field"><label>メッセージ・ご提供いただける物品など</label><textarea name="message"></textarea></div>
+        <div class="field"><div class="checks"><label><input type="checkbox" required> 個人情報の取り扱いに同意します</label></div></div>
+        <button class="btn" type="submit">支援を申し込む</button>
+        <div class="thanks"><h3>温かいご支援をありがとうございます。</h3><p>お支払い方法などの詳細は、担当よりメールでご案内します。</p></div>
       </form>
 
       <p class="note">※ 現在は見た目のみのデモです。送信先（Googleフォーム／メール等）は後で接続してください。</p>

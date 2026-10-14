@@ -15,12 +15,20 @@
 <header>
   <div class="container nav">
     <a href="index.html" class="logo"><i></i>和アートセラピー</a>
-    <ul>
-      <li><a href="index.html">トップ</a></li>
-      <li><a href="#seasons">季節ごとに見る</a></li>
-      <li><a href="apply.html" class="btn small">応募する</a></li>
-    </ul>
+    <div class="nav-right">
+      <a href="apply.html" class="btn small">応募する</a>
+      <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
+  <nav class="menu" id="menu">
+    <ul class="container">
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="#strips">月ごとに見る</a></li>
+      <li><a href="#seasons">季節ごとに見る</a></li>
+      <li><a href="index.html#support">応援する・賛助会員</a></li>
+      <li><a href="apply.html">応募フォーム</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
@@ -115,5 +123,6 @@ document.getElementById('seasonList').innerHTML = Object.entries(SEASONS).map(([
     <ul>${MONTHS.filter(d => d.season === key).map(d => `<li><b>${d.m}月</b>${d.title}</li>`).join('')}</ul>
   </div>`).join('');
 </script>
+<script src="menu.js"></script>
 </body>
 </html>

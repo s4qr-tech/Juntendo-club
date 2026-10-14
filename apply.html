@@ -118,7 +118,11 @@
         </div>
         <div class="row2">
           <div class="field"><label>お名前・団体名<small>必須</small></label><input type="text" name="name" required></div>
-          <div class="field"><label>口数（賛助会員の方）</label><input type="text" name="units" placeholder="例：1口"></div>
+          <div class="field"><label>口数（賛助会員の方・最大10口）</label><select name="units">
+            <option value="">—（賛助会員以外）</option>
+            <option>1口</option><option>2口</option><option>3口</option><option>4口</option><option>5口</option>
+            <option>6口</option><option>7口</option><option>8口</option><option>9口</option><option>10口</option>
+          </select></div>
         </div>
         <div class="row2">
           <div class="field"><label>メールアドレス<small>必須</small></label><input type="email" name="email" required></div>

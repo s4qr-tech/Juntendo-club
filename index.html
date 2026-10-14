@@ -15,17 +15,23 @@
 <header>
   <div class="container nav">
     <a href="#top" class="logo"><i></i>和アートセラピー</a>
-    <ul>
-      <li><a href="#about">について</a></li>
+    <div class="nav-right">
+      <a href="apply.html" class="btn small">応募する</a>
+      <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu">
+    <ul class="container">
+      <li><a href="#about">和アートセラピーとは</a></li>
       <li><a href="#flow">活動の流れ</a></li>
       <li><a href="history.html">活動のあゆみ</a></li>
-      <li><a href="#voices">声</a></li>
+      <li><a href="#voices">参加者の声</a></li>
       <li><a href="#members">仲間</a></li>
       <li><a href="#results">実績</a></li>
-      <li><a href="#support">応援する</a></li>
-      <li><a href="apply.html" class="btn small">応募する</a></li>
+      <li><a href="#support">応援する・賛助会員</a></li>
+      <li><a href="#contact">参加募集</a></li>
     </ul>
-  </div>
+  </nav>
 </header>
 
 <main id="top">
@@ -207,5 +213,6 @@ const io = new IntersectionObserver((es) => {
 }, { threshold: .15 });
 document.querySelectorAll('.fade').forEach(el => io.observe(el));
 </script>
+<script src="menu.js"></script>
 </body>
 </html>
